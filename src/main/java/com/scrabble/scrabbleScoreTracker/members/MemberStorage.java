@@ -10,21 +10,27 @@ import java.util.Hashtable;
 
 public class MemberStorage {
 
-    private ArrayList<Member> memberList = new ArrayList<Member>();
+    private static ArrayList<Integer> memberKeyList = new ArrayList<Integer>();
+    private static Hashtable<Integer, Member> memberHashtable = new Hashtable<Integer, Member>();
 
-    public void addMember(Member newMember) {
-        memberList.add(newMember);
+    public static ArrayList<Integer> getMemberKeyList() {
+        return memberKeyList;
     }
 
-    public void removeMember(Integer key) {
-        memberList.remove(key);
+    public static Member getMember(int key){
+        return memberHashtable.get(key);
     }
 
-    public Member getMember(Integer key) {
-        return memberList.get(key);
+    public static void addMember(int id, Member member){
+        memberHashtable.put(id,member);
+        memberKeyList.add(id);
     }
 
-    public ArrayList<Member> getAllItems(){
-        return memberList;
+    public static ArrayList<Member> getAllMemberDetails(){
+        ArrayList<Member> tempMemberList = new ArrayList<>();
+        for(Integer key:memberKeyList){
+        tempMemberList.add(memberHashtable.get(key));
+        }
+        return tempMemberList;
     }
 }

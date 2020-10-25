@@ -1,11 +1,8 @@
-package com.scrabble.scrabbleScoreTracker;
+package com.scrabble.scrabbleScoreTracker.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
+import com.scrabble.scrabbleScoreTracker.database.MemberDataService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import org.springframework.jdbc.core.JdbcTemplate;
 
 @SpringBootApplication
 public class ScrabbleScoreTrackerApplication {
