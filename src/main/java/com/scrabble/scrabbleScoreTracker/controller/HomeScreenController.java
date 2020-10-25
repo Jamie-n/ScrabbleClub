@@ -6,21 +6,19 @@ import com.scrabble.scrabbleScoreTracker.members.MemberStorage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
+import java.security.Principal;
 import java.sql.SQLException;
 
 @Controller
 public class HomeScreenController {
 
+
     @GetMapping("/")
-    public String home(Model model) throws SQLException {
-
+    public String splashScreen(){
         return "splashScreen";
-    }
-
-    @GetMapping(value = "/")
-    public String enterApp(){
-        return "home";
     }
 
     @GetMapping("/home")
