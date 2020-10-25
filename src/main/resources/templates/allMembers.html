@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Members of Scrabble Club</title>
+</head>
+<body>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th> User ID</ID> </th>
+            <th> Name </th>
+            <th>Matches Played</ID> </th>
+            <th>Wins </th>
+            <th>Losses </th>
+
+
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${users.empty}">
+            <td colspan="2"> No Users Available </td>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td><span th:text="${user.id}"> ID </span></td>
+            <td><span th:text="${user.firstName}"> Name </span></td>
+            <td><span th:text="${user.matchesPlayed}"></span> </td>
+            <td><span th:text="${user.wins}"></span> </td>
+            <td><span th:text="${user.losses}"></span> </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
