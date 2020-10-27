@@ -1,16 +1,26 @@
 package com.scrabble.scrabbleScoreTracker.controller;
 
-import com.scrabble.scrabbleScoreTracker.database.MemberDataService;
-import com.scrabble.scrabbleScoreTracker.members.DatePicker;
+import com.scrabble.scrabbleScoreTracker.database.MemberDataServiceRetrieve;
+import com.scrabble.scrabbleScoreTracker.members.AddUser;
 import com.scrabble.scrabbleScoreTracker.members.Member;
 import com.scrabble.scrabbleScoreTracker.members.MemberStorage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.sql.SQLException;
+
+/**
+ *
+ * The controller class for the homescreen elements
+ * @author Jamie Neighbours
+ * @version October 2020
+ *
+ *
+ */
+
+
 
 @Controller
 public class HomeScreenController {
@@ -28,15 +38,10 @@ public class HomeScreenController {
 
     @GetMapping("/allMembers")
     public String members(Model model) throws SQLException {
-        MemberDataService.getAllMemberDataFromDb();
+        MemberStorage.purgeData();
+        MemberDataServiceRetrieve.getAllMemberDataFromDb();
         model.addAttribute("users", MemberStorage.getAllMemberDetails());
         return "allMembers";
-    }
-
-    @GetMapping("/Scoreboard")
-    public String scoreboard(DatePicker datePicker, Model model) {
-        model.addAttribute("date", datePicker);
-        return "leaderboard";
     }
 
     @GetMapping("/addUser")

@@ -1,5 +1,18 @@
 package com.scrabble.scrabbleScoreTracker.members;
 
+
+/**
+ *
+ * The class that defines the member object
+ *
+ * @author Jamie Neighbours
+ * @version October 2020
+ *
+ *
+ */
+
+
+
 public class Member {
 
     int id;
@@ -88,6 +101,7 @@ public class Member {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
 }
 
 

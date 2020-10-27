@@ -1,23 +1,29 @@
 package com.scrabble.scrabbleScoreTracker.members;
 
-import com.scrabble.scrabbleScoreTracker.database.DatabaseAccess;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Hashtable;
 
+/**
+ *
+ * The class that  temporarily stores the member objects when being displayed
+ *
+ * @author Jamie Neighbours
+ * @version October 2020
+ *
+ *
+ */
+
 public class MemberStorage {
+
 
     private static ArrayList<Integer> memberKeyList = new ArrayList<Integer>();
     private static Hashtable<Integer, Member> memberHashtable = new Hashtable<Integer, Member>();
 
-    public static ArrayList<Integer> getMemberKeyList() {
+
+    public ArrayList<Integer> getMemberKeyList() {
         return memberKeyList;
     }
-
-    public static Member getMember(int key){
+    public  Member getMember(int key){
         return memberHashtable.get(key);
     }
 
@@ -32,5 +38,10 @@ public class MemberStorage {
         tempMemberList.add(memberHashtable.get(key));
         }
         return tempMemberList;
+    }
+
+    public static void purgeData(){
+        memberKeyList.clear();
+        memberHashtable.clear();
     }
 }

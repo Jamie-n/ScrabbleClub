@@ -2,18 +2,31 @@ package com.scrabble.scrabbleScoreTracker.database;
 
 import com.scrabble.scrabbleScoreTracker.members.Member;
 import com.scrabble.scrabbleScoreTracker.members.MemberStorage;
+import org.hsqldb.Database;
 
 import javax.annotation.PostConstruct;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-public class MemberDataService {
+/**
+ *
+ * The service that pulls and user data from the database
+ *
+ * @author Jamie Neighbours
+ * @version October 2020
+ *
+ *
+ */
 
+
+public class MemberDataServiceRetrieve {
 
     @PostConstruct
     public static void getAllMemberDataFromDb() throws SQLException {
-        ResultSet resultSet = DatabaseAccess.retrieveData("SELECT m.id, m.first_name, m.last_name, m.phone_num, IIf(IsNull(wins.no_wins),0,wins.no_wins) AS wins, IIf(IsNull(losses.no_losses),0,losses.no_losses) AS losses\n" +
+        ResultSet resultSet = DatabaseConn.retrieveData("SELECT m.id, m.first_name, m.last_name, m.phone_number, IIf(IsNull(wins.no_wins),0,wins.no_wins) AS wins, IIf(IsNull(losses.no_losses),0,losses.no_losses) AS losses\n" +
                 "FROM (members AS m LEFT JOIN (select w.winner_id, count(1) as no_wins\n" +
                 "\n" +
                 "               from matches w\n" +
@@ -37,5 +50,19 @@ public class MemberDataService {
                     resultSet.getInt("losses")));
         }
     }
+
+
+    public static Integer findKey(){
+        try{
+            ResultSet resultSet = DatabaseConn.retrieveData("")
+        }catch (Exception e){
+
+        }
+
+        return null;
+        }
+
+
+
 
 }

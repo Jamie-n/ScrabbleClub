@@ -1,6 +1,5 @@
 package com.scrabble.scrabbleScoreTracker.controller;
 
-import com.scrabble.scrabbleScoreTracker.database.MemberDataService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
