@@ -1,10 +1,13 @@
 package com.scrabble.scrabbleScoreTracker.controller;
 
 import com.scrabble.scrabbleScoreTracker.database.MemberDataService;
+import com.scrabble.scrabbleScoreTracker.members.DatePicker;
+import com.scrabble.scrabbleScoreTracker.members.Member;
 import com.scrabble.scrabbleScoreTracker.members.MemberStorage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.sql.SQLException;
@@ -13,13 +16,13 @@ import java.sql.SQLException;
 public class HomeScreenController {
 
     @GetMapping("/")
-    public RedirectView redirectUser(){
+    public RedirectView redirectUser() {
         return new RedirectView("home");
     }
 
 
     @GetMapping("/home")
-    public String home(){
+    public String home() {
         return "home";
     }
 
@@ -31,13 +34,33 @@ public class HomeScreenController {
     }
 
     @GetMapping("/Scoreboard")
-    public String scoreboard(){
-        return "scoreboard";
+    public String scoreboard(DatePicker datePicker, Model model) {
+        model.addAttribute("date", datePicker);
+        return "leaderboard";
     }
 
+    @GetMapping("/addUser")
+    public String addUser(Model model) {
+        model.addAttribute("member", new Member());
+        return "addUser";
+    }
 
+    @PostMapping("/addUser")
+    public String addUser(@ModelAttribute Member member, Model model) {
+        if (AddUser.addUserDb(member)) {
+            return "userSuccess";
+        } else {
 
+        }
+        return null;
 
-
-
+    }
 }
+
+
+
+
+
+
+
+

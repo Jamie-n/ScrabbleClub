@@ -5,9 +5,13 @@ public class Member {
     int id;
     String firstName;
     String lastName;
+    String phoneNumber;
     int matchesPlayed;
     int wins;
     int losses;
+
+    public Member() {
+    }
 
     public Member(int id, String firstName, String lastName) {
         this.id = id;
@@ -18,10 +22,11 @@ public class Member {
         this.losses = 0;
     }
 
-    public Member(int id, String firstName, String lastName, int matchesPlayed, int wins, int losses) {
+    public Member(int id, String firstName, String lastName,String phoneNumber, int matchesPlayed, int wins, int losses) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
         this.matchesPlayed = matchesPlayed;
         this.wins = wins;
         this.losses = losses;
@@ -74,6 +79,14 @@ public class Member {
 
     public void setLosses(int losses) {
         this.losses = losses;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }
 

@@ -31,6 +31,7 @@ public class MemberDataService {
             MemberStorage.addMember(resultSet.getInt("id"), new Member(resultSet.getInt("id"),
                     resultSet.getString("first_name"),
                     resultSet.getString("last_name"),
+                    resultSet.getString("phone_number"),
                     resultSet.getInt("wins")+resultSet.getInt("losses"),
                     resultSet.getInt("wins"),
                     resultSet.getInt("losses")));

@@ -17,13 +17,10 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th scope="col"> User ID</ID> </th>
                         <th scope="col"> Name </th>
-                        <th scope="col">Matches Played</ID> </th>
+                        <th scope="col">Matches Played</th>
                         <th scope="col">Wins </th>
                         <th scope="col">Losses </th>
-
-
                     </tr>
                     </thead>
                     <tbody>
@@ -31,8 +28,7 @@
                         <td colspan="2"> No Users Available </td>
                     </tr>
                     <tr th:each="user : ${users}">
-                        <td><span th:text="${user.id}"> ID </span></td>
-                        <td><span th:text="${user.firstName}"> Name </span></td>
+                        <td><span th:text="${user.firstName}"></span></td>
                         <td><span th:text="${user.matchesPlayed}"></span> </td>
                         <td><span th:text="${user.wins}"></span> </td>
                         <td><span th:text="${user.losses}"></span> </td>

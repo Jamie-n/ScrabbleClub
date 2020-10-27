@@ -9,7 +9,6 @@ import java.sql.*;
  *
  * @author Jamie Neighbours
  * @version October 2020
- *
  */
 
 public class DatabaseAccess {
@@ -23,16 +22,30 @@ public class DatabaseAccess {
      * @return
      */
     public static ResultSet retrieveData(String query) {
+        try (Connection connection = DriverManager.getConnection(DATABASE_CONN)) {
+            return connection.createStatement().executeQuery(query);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        ;
+        return null;
+    }
 
 
-    try(Connection connection = DriverManager.getConnection(DATABASE_CONN)) {
-        return connection.createStatement().executeQuery(query);
+    public static void pushData(Integer id, String firstName, String lastName, String phoneNumber) {
+        try (Connection connection = DriverManager.getConnection(DATABASE_CONN)) {
+            String sql = "INSERT INTO Members values (?,?,?,?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1,id);
+            statement.setString(2,firstName);
+            statement.setString(3,lastName);
+            statement.setString(4,phoneNumber);
+            statement.executeUpdate();
 
-    } catch (SQLException ex) {
-        ex.printStackTrace();
-    } ;
-
-    return null;
-
-}
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        ;
+    }
 }
