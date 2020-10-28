@@ -15,9 +15,9 @@
             <h1 class="display-4">Search</h1>
             <form name="addUser" th:action="@{/searchUser}" th:object="${search}" method="post">
                 <div class="form-group">
-                    <input type="text" value="Search..." class="form-control" th:field="*{searchValue}" id="firstName">
+                    <input type="text" value="Search" class="form-control" th:field="*{searchValue}" id="searchTerm">
                 </div>
-                <input type="submit" class="btn btn-primary" value="Add User"/>
+                <input type="submit" class="btn btn-primary" value="Find Member"/>
             </form>
         </div>
     </div>

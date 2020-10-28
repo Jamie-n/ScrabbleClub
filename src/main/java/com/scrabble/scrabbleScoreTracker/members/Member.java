@@ -26,10 +26,11 @@ public class Member {
     public Member() {
     }
 
-    public Member(int id, String firstName, String lastName) {
+    public Member(int id, String firstName, String lastName, String phoneNumber) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
         this.matchesPlayed = 0;
         this.wins = 0;
         this.losses = 0;

@@ -16,25 +16,40 @@
     <div class="container mt-5">
         <div class="jumbotron">
             <h1 class="display-4">Member Information</h1>
+            <td class="display-3" th:text="${#lists.size(member)+' Result(s) Were Found'}"></td>
+        </div>
+        <div>
+            <table class="table">
 
+                <thead>
+                <tr>
+                    <th scope="col"> First Name</th>
+                    <th scope="col"> Last Name</th>
+                    <th scope="col"> Phone Number</th>
+                    <th scope="col">Matches Played</th>
+                    <th scope="col">Wins</th>
+                    <th scope="col">Losses</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${member}">
+                    <form name="addUser" action="/selectUser" method="post">
+                        <td><span th:text="${user.firstName}"></span></td>
+                        <td> <input type="text" th:value="${user.id}"/></td>
+                        <td><span th:text="${user.lastName}"></span></td>
+                        <td><span th:text="${user.phoneNumber}"></span></td>
+                        <td><span th:text="${user.matchesPlayed}"></span></td>
+                        <td><span th:text="${user.wins}"></span></td>
+                        <td><span th:text="${user.losses}"></span></td>
+                        <td><input type="submit" name="action" value="Accept"/>
+                        </td>
+                        </td>
+                    </form>
+                </tr>
+                </tbody>
+            </table>
         </div>
 
-        <h1 th:text="${search.getSearchValue()}"></h1>
-
-        <table class="table-borderless">
-            <thead>
-            <tr>
-                <th scope="col"> Name </th>
-                <th scope="col">Matches Played</th>
-                <th scope="col">Wins </th>
-                <th scope="col">Losses </th>
-                <th scope="col">Highest Score </th>
-                <th scope="col">Average Score </th>
-
-
-            </tr>
-            </thead>
-        </table>
     </div>
     </div>
     </div>

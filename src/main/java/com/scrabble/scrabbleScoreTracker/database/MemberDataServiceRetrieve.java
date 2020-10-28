@@ -3,22 +3,17 @@ package com.scrabble.scrabbleScoreTracker.database;
 import com.scrabble.scrabbleScoreTracker.members.Member;
 import com.scrabble.scrabbleScoreTracker.members.MemberStorage;
 import org.hsqldb.Database;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.annotation.PostConstruct;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 
 /**
- *
  * The service that pulls and user data from the database
  *
  * @author Jamie Neighbours
  * @version October 2020
- *
- *
  */
 
 
@@ -40,29 +35,41 @@ public class MemberDataServiceRetrieve {
                 "\n");
 
 
+
+    }
+
+
+    public static Boolean findMembers(String name) {
+
+        try(Connection connection = DriverManager.getConnection(DatabaseConn.DATABASE_CONN)){
+            ResultSet resultSet = DatabaseConn.retrieveData("SELECT m.id, m.first_name, m.last_name, m.phone_number,iif(isnull(wins.no_wins),0,wins.no_wins) as wins ,iif(isnull(losses.no_losses),0,losses.no_losses) as losses from (members m left join (select w.winner_id, count(1) as no_wins  from matches w group by w.winner_id) wins on m.id = wins.winner_id) left join (select l.looser_id, count(1) as no_losses from matches l group by l.looser_id) losses " +
+                    "on m.id =losses.[looser_id] WHERE M.FIRST_NAME =\""+name+"\" OR m.last_name =\""+name+"\";");
+
+            if(resultSet != null) {
+                parseData(resultSet);
+        }else{
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
+
+    }
+
+
+    private static void parseData(ResultSet resultSet) throws SQLException {
+        MemberStorage.purgeData();
         while (resultSet.next()) {//Creates a list of members from the database
             MemberStorage.addMember(resultSet.getInt("id"), new Member(resultSet.getInt("id"),
                     resultSet.getString("first_name"),
                     resultSet.getString("last_name"),
                     resultSet.getString("phone_number"),
-                    resultSet.getInt("wins")+resultSet.getInt("losses"),
+                    resultSet.getInt("wins") + resultSet.getInt("losses"),
                     resultSet.getInt("wins"),
                     resultSet.getInt("losses")));
         }
     }
-
-
-    public static Integer findKey(){
-        try{
-            ResultSet resultSet = DatabaseConn.retrieveData("")
-        }catch (Exception e){
-
-        }
-
-        return null;
-        }
-
-
 
 
 }

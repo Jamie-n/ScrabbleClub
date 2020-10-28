@@ -7,7 +7,7 @@
         <title>User Added</title>
 </head>
 
-<div class="jumbotron">User Has Been Added</div>
+<div class="jumbotron" th:text="${message.getAlert()}"></div>
     <a class="btn btn-primary" href="/home">Return to Homepage</a>
 
 <body>

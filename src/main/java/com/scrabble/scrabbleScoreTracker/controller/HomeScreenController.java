@@ -1,5 +1,6 @@
 package com.scrabble.scrabbleScoreTracker.controller;
 
+import com.scrabble.scrabbleScoreTracker.AlertMessage;
 import com.scrabble.scrabbleScoreTracker.database.MemberDataServiceRetrieve;
 import com.scrabble.scrabbleScoreTracker.members.AddUser;
 import com.scrabble.scrabbleScoreTracker.members.Member;
@@ -53,7 +54,8 @@ public class HomeScreenController {
     @PostMapping("/addUser")
     public String addUser(@ModelAttribute Member member, Model model) {
         if (AddUser.addUserDb(member)) {
-            return "userSuccess";
+            model.addAttribute("message", new AlertMessage("User Added"));
+            return "userAlert";
         } else {
 
         }
