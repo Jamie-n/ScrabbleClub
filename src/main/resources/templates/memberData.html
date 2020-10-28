@@ -33,7 +33,7 @@
                 </thead>
                 <tbody>
                 <tr th:each="user : ${member}">
-                    <form name="addUser" action="/selectUser" method="post">
+                    <form name="addUser" action="/selectUser" method="post/">
                         <td><span th:text="${user.firstName}"></span></td>
                         <td> <input type="text" th:value="${user.id}"/></td>
                         <td><span th:text="${user.lastName}"></span></td>
