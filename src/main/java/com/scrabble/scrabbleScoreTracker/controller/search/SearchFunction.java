@@ -2,11 +2,18 @@ package com.scrabble.scrabbleScoreTracker.controller.search;
 
 import com.scrabble.scrabbleScoreTracker.AlertMessage;
 import com.scrabble.scrabbleScoreTracker.database.MemberDataServiceRetrieve;
-import com.scrabble.scrabbleScoreTracker.members.Member;
 import com.scrabble.scrabbleScoreTracker.members.MemberStorage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+/**
+ *
+ * Controller for the search function
+ *
+ * @author Jamie Neighbours
+ * @version November 2020
+ */
 
 @Controller
 public class SearchFunction {

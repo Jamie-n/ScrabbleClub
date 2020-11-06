@@ -27,11 +27,24 @@ public class MemberStorage {
         return memberHashtable.get(key);
     }
 
+    /**
+     * Add a new member to the hash table
+     *
+     * @param id - The key
+     * @param member - The new member class to be added
+     */
+
     public static void addMember(int id, Member member){
         memberHashtable.put(id,member);
         memberKeyList.add(id);
     }
 
+    /**
+     * Pulls all members stored in the hash table
+     *
+     *
+     * @return - An array list of all data in the hash table
+     */
     public static ArrayList<Member> getAllMemberDetails(){
         ArrayList<Member> tempMemberList = new ArrayList<>();
         for(Integer key:memberKeyList){
@@ -39,6 +52,12 @@ public class MemberStorage {
         }
         return tempMemberList;
     }
+
+    /**
+     * Clears all stored data from the static class.
+     *
+     *
+     */
 
     public static void purgeData(){
         memberKeyList.clear();

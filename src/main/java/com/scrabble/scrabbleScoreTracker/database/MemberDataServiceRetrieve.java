@@ -19,6 +19,13 @@ import java.sql.*;
 
 public class MemberDataServiceRetrieve {
 
+    /**
+     * Pulls all member data from database
+     *
+     *
+     * @throws SQLException if connection cannot be established or data cannot be retrieved
+     */
+
     @PostConstruct
     public static void getAllMemberDataFromDb() throws SQLException {
         ResultSet resultSet = DatabaseConn.retrieveData("SELECT m.id, m.first_name, m.last_name, m.phone_number, IIf(IsNull(wins.no_wins),0,wins.no_wins) AS wins, IIf(IsNull(losses.no_losses),0,losses.no_losses) AS losses\n" +
@@ -38,6 +45,13 @@ public class MemberDataServiceRetrieve {
 
     }
 
+    /**
+     * Finds a single member from the database
+     *
+     * @param name - The first or last name of the member to be queried
+     * @return - boolean based on the success of the query, automatically populates a static class
+     */
+
 
     public static Boolean findMembers(String name) {
 
@@ -54,8 +68,14 @@ public class MemberDataServiceRetrieve {
             e.printStackTrace();
         }
         return true;
-
     }
+
+    /**
+     * Parses the data from the query and populates a static class.
+     *
+     * @param resultSet - The member data to be parsed
+     * @throws SQLException - If no data is retrieved
+     */
 
 
     private static void parseData(ResultSet resultSet) throws SQLException {
